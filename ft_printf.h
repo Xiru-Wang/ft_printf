@@ -6,12 +6,12 @@
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:12:01 by xiwang            #+#    #+#             */
-/*   Updated: 2023/05/26 18:12:04 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/05/29 15:28:49 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF.H
-# define FT_PRINTF.H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdio.h>
