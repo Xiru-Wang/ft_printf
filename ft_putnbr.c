@@ -1,39 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/31 18:42:52 by xiwang            #+#    #+#             */
+/*   Updated: 2023/05/31 19:55:39 by xiwang           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-#include <limits.h>
+#include <limits.h>//INT_MIN
 #include <unistd.h>
 #include <stdio.h>
 
-int	ft_putstr(char *s)
-{
-	int	i;
+// int	ft_putstr(char *s)
+// {
+// 	int	i;
 
-	if (s == NULL)
-	{
-		write(1, "(null)", 6); //? system?
-		return (6);
-	}
-	i = 0;
-	while (*s)
-	{
-		write(1, s, 1);
-		s++;
-		i++;
-	}
-	// while (s[i])
-	// 	i++;
-	// write(1, s, i);
-	return (i);
-}
+// 	if (s == NULL)
+// 	{
+// 		write(1, "(null)", 6); //? system?
+// 		return (6);
+// 	}
+// 	i = 0;
+// 	while (*s)
+// 	{
+// 		write(1, s, 1);
+// 		s++;
+// 		i++;
+// 	}
+// 	// while (s[i])
+// 	// 	i++;
+// 	// write(1, s, i);
+// 	return (i);
+// }
 
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
+// int	ft_putchar(char c)
+// {
+// 	write(1, &c, 1);
+// 	return (1);
+// }
 
 static int	ft_putdigits(int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n > 9)
@@ -44,7 +56,7 @@ static int	ft_putdigits(int n)
 
 int	ft_putnbr(int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n < 0)
@@ -59,14 +71,13 @@ int	ft_putnbr(int n)
 	}
 	else
 		count += ft_putdigits(n);
-
 	return (count);
 }
 
-int main()
-{
-	int n = ft_putnbr(-42);
-	printf("\n");
-	printf("%d", n);
-	return 0;
-}
+// int main()
+// {
+// 	int n = ft_putnbr(-42);
+// 	printf("\n");
+// 	printf("%d", n);
+// 	return 0;
+// }
