@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:11:50 by xiwang            #+#    #+#             */
-/*   Updated: 2023/05/29 17:34:27 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:16:44 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,65 +22,58 @@ Its purpose is to set the stage and define which elements will be stable and whi
 access to the arguments of the variadic function. Each time va_arg is called, you move to the next argument.
 5.va_end( va_list var ): free the allocated mem
 
-printf returns an int value of how many chars in side of the string
+printf returns an int value of how many chars inside of the string
+
+%[flags][width][.precision]specifier
 */
 
-static void	parse_args(va_list *args, char c, int *count)
+static int	parse_args(va_list args, char c)
 {
-	if (c == 's')
-		ft_print_str(va_args(*args, char *), count);
+	int	count;
 
-	//va_arg(arg, s[i])
+	count = 0;
+	if (c == 'c')
+		count += ft_putchar(va_arg(args, int));//va_arg无法直接接收char类型参数
+	else if (c == 's')
+		count += ft_putstr(va_arg(args, char *));
+	//else if (c == 'p')
+		//count += ft_put_ptr(va_arg(args, unsigned long int));//??
+	else if (c == 'd' || c == 'i')
+		count += ft_putnbr(va_arg(args, int));
+	else if (c == 'u')
+		count += ft_put_u(va_arg(args, unsigned int));
+	else if (c == 'x')
+		count += ft_put_hex(va_arg(args, unsigned int), 'x');
+	else if (c == 'X')
+		count += ft_put_hex(va_arg(args, unsigned int), 'X');
+	else if (c == '%')
+		count += ft_put_char('%');
+	return (count);
 }
 
 int	ft_printf(const char *s, ...)
 {
 	va_list			args;
-	unsigned int	i;
 	int				count;//count len of each args, + i, return
 
-	i = 0;
-	count = 0;
 	if (s == 0)
 		return (0);
+	count = 0;
 	va_start(args, s);
-	while(s[i])
+	while(*s)
 	{
-		if (s[i] == '%')
+		if (*s == '%')
 		{
-			//i++;
-			parse_arg(&args, s[++i], &count);
-			i++;
+			count += parse_args(args, ++s);//check specifier
+			s++;//skip specifier
 		}
 		else
 		{
-			putchar(s[i]);
+			write(1, s, 1);
+			count++;
 		}
-		i++;
+		s++;
 	}
 	va_end(args);
-	count += i;
 	return (count);
 }
-
-// int	main(void)
-// {
-// 	int n = printf("hello\n");
-// 	printf("%d", n);//6
-// 	printf("\n");
-
-// 	int m = printf("hello %d\n", 42);
-// 	printf("%d", m);//9
-// 	printf("\n");
-
-// 	int k = printf("");
-// 	printf("%d", k);//0
-// 	printf("\n");
-
-// 	char *s = NULL;
-// 	int f = printf(s);
-// 	printf("%d", f);//cannot compile
-// 	printf("\n");
-
-// 	return (0);
-// }
