@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_hex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:41:58 by xiwang            #+#    #+#             */
-/*   Updated: 2023/05/31 19:54:02 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/06/01 14:36:57 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,34 @@
 %lx: unsigned long
 %llx: unsigned long long
 */
-// int	ft_putchar(char c)
-// {
-// 	write(1, &c, 1);
-// 	return (1);
-// }
 
-static void	put_low_hex(int n)
+/*int	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}*/
+
+int	ft_put_hex(unsigned int n, char x)
+{
+	int		count;
+
+	count = 0;
+	if (n > 15)
+		count += ft_put_hex(n / 16, x);
+	n = n % 16;
+	if (n >= 10 && n <= 15)
+	{
+		if (x == 'x')
+			count += ft_putchar(n - 10 + 'a');
+		if (x == 'X')
+			count += ft_putchar(n - 10 + 'A');
+	}
+	if (n <= 9)
+		count += ft_putchar(n + 48);
+	return (count);
+}
+
+/*static void	put_low_hex(int n)
 {
 	if (n == 10)
 		ft_putchar('a');
@@ -75,10 +96,10 @@ int	ft_put_hex(unsigned int n, char x)
 	return (count);
 }
 
-// int main(void)
-// {
-//     int n =  ft_put_hex(42, 'X');
-//     printf("| %d", n);
+int main(void)
+{
+    int n =  ft_put_hex(42, 'X');
+    printf("| %d", n);
 
-//     return 0;
-// }
+    return 0;
+}*/

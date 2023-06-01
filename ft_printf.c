@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:11:50 by xiwang            #+#    #+#             */
-/*   Updated: 2023/05/31 20:09:43 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/05/31 21:07:40 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,32 @@ printf returns an int value of how many chars inside of the string
 va_arg does not take char!
 */
 
-static int	parse_args(va_list args, char c)
+// int	ft_putchar(char c)
+// {
+// 	write(1, &c, 1);
+// 	return (1);
+// }
+
+static int	parse_args(va_list args, const char *s)
 {
 	int	count;
 
 	count = 0;
-	if (c == 'c')
+	if (*s == 'c')
 		count += ft_putchar(va_arg(args, int));
-	else if (c == 's')
+	else if (*s == 's')
 		count += ft_putstr(va_arg(args, char *));
-	else if (c == 'p')
+	else if (*s == 'p')
 		count += ft_putptr(va_arg(args, unsigned long int));
-	else if (c == 'd' || c == 'i')
+	else if (*s == 'd' || *s == 'i')
 		count += ft_putnbr(va_arg(args, int));
-	else if (c == 'u')
+	else if (*s == 'u')
 		count += ft_put_u(va_arg(args, unsigned int));
-	else if (c == 'x')
+	else if (*s == 'x')
 		count += ft_put_hex(va_arg(args, unsigned int), 'x');
-	else if (c == 'X')
+	else if (*s == 'X')
 		count += ft_put_hex(va_arg(args, unsigned int), 'X');
-	else if (c == '%')
+	else if (*s == '%')
 		count += ft_putchar('%');
 	return (count);
 }
@@ -66,13 +72,22 @@ int	ft_printf(const char *s, ...)
 	{
 		if (*s == '%')
 		{
-			count += parse_args(args, *(++s));
+			count += parse_args(args, ++s);
 			s++;
 		}
 		else
+		{
 			count += ft_putchar(*s);
-		s++;
+			s++;
+		}
 	}
 	va_end(args);
 	return (count);
 }
+
+// int	main()
+// {
+// 	int n = ft_printf(" %c ", '0');
+// 	printf("|%d", n);
+// 	return 0;
+// }
