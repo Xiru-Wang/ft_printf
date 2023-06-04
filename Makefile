@@ -11,18 +11,12 @@ SRC = ft_printf.c \
 		ft_putptr.c \
 		ft_putstr.c
 
-
-#BSRC =
-
 OBJS = $(SRC:.c=.o)
-#BOBJS = $(BSRC:.c=.o)
 
 all:		$(NAME)
 
 $(NAME): 	$(OBJS)
 			$(AR) $@ $^
-#bonus: 	$(NAME) $(BOBJS)
-#$(AR) $(NAME) $^
 
 clean:
 		rm -f $(OBJS)

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:44:31 by xiwang            #+#    #+#             */
-/*   Updated: 2023/06/01 12:03:53 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/06/04 17:46:35 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_putstr(char *s)
 {
@@ -22,17 +23,16 @@ int	ft_putstr(char *s)
 		return (6);
 	}
 	i = 0;
-	while (*s)
-	{
-		write(1, s, 1);
-		s++;
+	while (s[i])
 		i++;
-	}
+	write(1, s, i);
 	return (i);
 }
 
-//? system?
+// int	main()
+// {
+// 	ft_putstr(NULL);
+// 	printf("%s",NULL);//(null)
 
-	// while (s[i])
-	// 	i++;
-	// write(1, s, i);
+// 	return (0);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:11:50 by xiwang            #+#    #+#             */
-/*   Updated: 2023/05/31 21:07:40 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/06/04 17:48:54 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ printf returns an int value of how many chars inside of the string
 %[flags][width][.precision]specifier
 va_arg does not take char!
 */
-
-// int	ft_putchar(char c)
-// {
-// 	write(1, &c, 1);
-// 	return (1);
-// }
 
 static int	parse_args(va_list args, const char *s)
 {

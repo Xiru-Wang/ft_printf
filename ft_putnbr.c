@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:42:52 by xiwang            #+#    #+#             */
-/*   Updated: 2023/06/01 14:39:07 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/06/04 17:31:14 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static int	ft_putdigits(int n)
 	count += ft_putchar(n % 10 + '0');
 	return (count);
 }
-//4321 432 43 4
-//4 3 2 1
 
 int	ft_putnbr(int n)
 {

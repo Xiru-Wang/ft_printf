@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:44:19 by xiwang            #+#    #+#             */
-/*   Updated: 2023/06/01 14:30:49 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/06/04 17:37:38 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-//#include <stdio.h>
+#include <stdio.h>
 //#include <unistd.h>
 
 /*
@@ -64,22 +64,22 @@ int	ft_putptr(unsigned long int n)
 	int	count;
 
 	count = 0;
+	if (n == 0)
+	{
+		count += ft_putstr("(nil)");
+		return (count);
+	}
 	count += ft_putstr("0x");
 	count += ft_put_adr(n);
 	return (count);
 }
 
-	// if (n == 0)
-	// {
-	// 	count += ft_putstr("nil");
-	// 	return (count);
-	// }
 //"0x" prefix: the value following is in hex format
 
 // int main()
 // {
 //     //int n = ft_put_adr(255);
-// 	int n = ft_printf(" %p %p ", 0, 0);
+// 	int n = printf(" %p %p ", NULL, NULL);
 // 	printf("| digits: %d", n);
 // 	return 0;
 // }
